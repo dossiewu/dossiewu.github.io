@@ -1,5 +1,5 @@
 export const SITE = {
-  website: "https://xunhuiwu.github.io/", // replace this with your deployed domain
+  website: "https://dossiewu.github.io/", // replace this with your deployed domain
   author: "Xunhui Wu",
   profile: "www.linkedin.com/in/dossiewu/",
   desc: "Ph.D. Candidate at Northwestern University studying Neuroscience. Passionate about uncovering how brain circuits shape behavior and mental health.",
