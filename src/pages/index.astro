@@ -12,103 +12,166 @@ import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
 
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 ---
 
 <Layout>
   <Header />
-  <main id="main-content" data-layout="index" class="app-layout">
-    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+  <main id="main-content">
+    <div class="home-container">
+      <img src="/profile.jpg" alt="Xunhui Wu" class="profile-img" />
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check
-        <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
+      <div class="terminal-card">
+        <div class="window-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="file-name">portfolio.tsx</span>
+        </div>
+
+        <div class="window-content">
+          <p class="greeting">> Hello, I'm</p>
+            <h1 style="font-family: monospace; letter-spacing: -0.02em;">
+              Xunhui Wu
+            </h1>
+          <p class="typing-text">Neuroscience Ph.D. Candidate | Circuit Dynamics</p>
+          
+          <div class="bio-details">
+            <p>// Graduate Researcher at Northwestern University</p>
+            <p>// Focus: Neuropsychiatric & Movement Disorders</p>
+            <p>// Expertise: <em>in vivo</em> Calcium Imaging & Pharmacology</p>
+            <p>// NIMH T32 Trainee in Neurobiology of Information Storage Training Program</p>
           </div>
-        )
-      }
-    </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-b border-border": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href="/posts/">
-        All Posts
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
+          <div class="button-group">
+            <a href="/research" class="btn-primary">View My Research</a>
+            <a href="/contact" class="btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <Footer />
 </Layout>
+
+<style>
+  /* This centers everything and puts them in a row */
+  .home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem; /* Space between photo and card */
+    padding: 4rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* This makes it look good on mobile! */
+  }
+
+  /* This controls your profile photo size */
+  .profile-img {
+    width: 320px;
+    height: 350px;
+    object-fit: cover; /* Prevents stretching */
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+
+  .terminal-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace; /* Monospace is key for that dev look */
+  }
+
+  .window-header {
+    background: #f5f5f5;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .dot { height: 12px; width: 12px; border-radius: 50%; margin-right: 8px; }
+  .red { background: #ff5f56; }
+  .yellow { background: #ffbd2e; }
+  .green { background: #27c93f; }
+
+  .file-name { color: #666; font-size: 0.8rem; margin-left: 10px; }
+
+  .window-content { padding: 30px; }
+  
+  h1 { color: #4f46e5; font-size: 2.5rem; margin: 0.5rem 0; }
+  .greeting { color: #10b981; margin: 0; }
+  .typing-text { font-size: 1.2rem; color: #333; font-weight: bold; }
+  .bio-details { color: #6b7280; margin: 1.5rem 0; line-height: 1.6; }
+
+/* 1. The Iridescent Gradient for your Name/Logo */
+  h1, .logo-text {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    transition: 0.5s;
+  }
+  
+  h1:hover {
+    background-position: right center; /* Shifts the gradient on hover */
+  }
+
+  /* 2. Button Styles */
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease; /* Makes the "light up" smooth */
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); /* The "glow" */
+    filter: brightness(1.1);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #6366f1;
+    border: 1px solid #e0e0e0;
+  }
+
+  .btn-secondary:hover {
+    background: #f8fafc;
+    border-color: #6366f1;
+    color: #4f46e5;
+  }
+
+  :global(.logo), :global(.logo a) { 
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent !important; /* Forces the text to be transparent so gradient shows */
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    text-decoration: none;
+  }
+</style>
 
 <script>
   document.addEventListener("astro:page-load", () => {

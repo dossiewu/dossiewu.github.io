@@ -1,0 +1,156 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`About | ${SITE.title}`}>
+  <Header />
+  <main id="main-content">
+    
+    <div class="page-header">
+      <h1 class="page-title">&lt;About Me /&gt;</h1>
+      <p class="subtitle">Investigating the circuits of neuropsychiatric disorders.</p>
+    </div>
+
+    <div class="terminal-card">
+      <div class="card-header">
+        <span class="command">$ whoami</span>
+      </div>
+      
+      <div class="card-body">
+        
+        <div class="terminal-entry">
+          <span class="arrow">&gt;</span> 
+          <p class="entry-text">
+            I'm a <strong>Ph.D. Candidate in Neuroscience</strong> at Northwestern University, advised by Dr. Jones Parker. My research spans from systems neuroscience, bioengineering, to molecular genetics.
+          </p>
+        </div>
+        
+        <div class="terminal-entry">
+          <span class="arrow">&gt;</span> 
+          <p class="entry-text">
+            Currently, I am investigating how <strong>striatal μ-opioid receptors</strong> drive circuit dynamics and behaviors. I build high-throughput data analysis pipelines using <strong>Python and MATLAB</strong> to process large-scale <em>in vivo</em> calcium imaging datasets.
+          </p>
+        </div>
+
+        <div class="terminal-entry">
+          <span class="arrow">&gt;</span> 
+          <p class="entry-text">
+            My journey started at the <strong>University of Toronto</strong> and took me to the <strong>Langer Lab at MIT</strong>, where I worked on cancer immunotherapy. I am passionate about using computational tools to solve biological problems as well as promoting neuroscience outreach.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* 1. Layout & Spacing */
+  #main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    min-height: 80vh; 
+  }
+
+  /* 2. The Header Title */
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #a855f7; /* Fallback color */
+    /* Iridescent Gradient */
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    font-family: Helvetica, sans-serif; 
+  }
+
+  /* 3. The "$ whoami" Card */
+  .terminal-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .card-header {
+    background: #f9fafb; 
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+  }
+
+  .command {
+    color: #10b981; /* Matrix Green */
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .card-body {
+    padding: 2rem;
+    font-family: Helvetica, sans-serif;
+  }
+
+  /* FIXED LAYOUT CSS STARTS HERE */
+  .terminal-entry {
+    display: flex;       /* Keeps the Arrow and Text side-by-side */
+    gap: 1.5rem;         /* Space between Arrow and Text */
+    margin-bottom: 1.5rem;
+    align-items: flex-start; /* Aligns arrow to the top of the paragraph */
+  }
+
+  .entry-text {
+    margin: 0;          /* Resets default paragraph spacing */
+    line-height: 1.8;   /* Makes text easy to read */
+    color: #374151;     /* Dark Gray text */
+    flex: 1;            /* Tells text to take up all remaining width */
+  }
+
+  .entry-text strong {
+    color: #4f46e5;     /* The Purple Highlight you liked */
+    font-weight: 700;
+  }
+
+  .arrow {
+    color: #a855f7; 
+    font-weight: bold;
+    user-select: none;
+    flex-shrink: 0;     /* Prevents arrow from getting squished */
+  }
+
+  /* Dark Mode Support */
+  :global(.dark) .terminal-card {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  :global(.dark) .card-header {
+    background: #111827;
+    border-color: #374151;
+  }
+  :global(.dark) .entry-text {
+    color: #d1d5db;
+  }
+  :global(.dark) .entry-text strong {
+    color: #818cf8; /* Lighter purple for dark mode */
+  }
+</style>

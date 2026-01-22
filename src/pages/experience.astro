@@ -1,0 +1,196 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`Experience | ${SITE.title}`}>
+  <Header />
+  <main id="main-content">
+    
+    <div class="page-header">
+      <h1 class="page-title">&lt;Experience /&gt;</h1>
+      <p class="subtitle">My academic and professional journey.</p>
+    </div>
+
+    <div class="timeline">
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Mar 2022 – Present</div>
+        <div class="timeline-card">
+          <h3>Graduate Student Researcher</h3>
+          <h4>Northwestern University | Chicago, IL</h4>
+          <p>
+            Investigating the role of striatal μ-opioid receptors in opioid-driven behaviors. 
+          </p>
+          <p>  
+            Using <strong><em>in vivo</em> calcium imaging</strong> and fiber photometry to characterize neuropsychiatric and movement disorders.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">May 2020 – Aug 2021</div>
+        <div class="timeline-card">
+          <h3>Master’s Student</h3>
+          <h4>Northwestern University | Evanston, IL</h4>
+          <p>
+             Studied <em>Drosophila</em> reproductive behaviors in response to temperature changes. 
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Nov 2019 – May 2020</div>
+        <div class="timeline-card">
+          <h3>Visiting Student (Langer Lab)</h3>
+          <h4>MIT Koch Institute | Cambridge, MA</h4>
+          <p>
+            Worked on polymeric microparticle-based cancer immunotherapy. 
+            </p>
+            <p>
+            Conducted tumor implantation in mice models and profiled immune cells using flow cytometry.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Sep 2018 – Apr 2019</div>
+        <div class="timeline-card">
+          <h3>Senior Project Student</h3>
+          <h4>SickKids (University of Toronto) | Toronto, ON</h4>
+          <p>
+            Investigated the effects of Angiotensin-Converting Enzyme (ACE) inhibitors in Alzheimer’s disease models using confocal imaging and TUNEL assays.
+          </p>
+        </div>
+      </div>
+
+       <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Sep 2017 – May 2019</div>
+        <div class="timeline-card">
+          <h3>Research Assistant</h3>
+          <h4>University of Toronto | Toronto, ON</h4>
+          <p>
+            Analyzed gene expression in lung-transplant patients and studied the effects of oil-sands emissions on lung epithelial cells.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* --- LAYOUT --- */
+  #main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .page-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    font-family: 'Helvetica', sans-serif; /* Your requested font */
+  }
+
+  /* --- TIMELINE TREE --- */
+  .timeline {
+    position: relative;
+    padding-left: 2rem; /* Space for the line */
+    border-left: 3px solid #e5e7eb; /* THE VERTICAL TRUNK */
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  /* The "Dot" on the tree */
+  .timeline-dot {
+    position: absolute;
+    left: -2.6rem; /* Adjusts dot to sit exactly on the line */
+    top: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #a855f7; /* Purple dot */
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #a855f7; /* Gives it a double-ring look */
+  }
+
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: #6366f1; /* Blue/Purple date */
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  /* --- THE CARD --- */
+  .timeline-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #a855f7; /* Glows purple on hover */
+  }
+
+  h3 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+  }
+
+  h4 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0.2rem 0 1rem 0; /* Spacing below the school name */
+  }
+
+  p {
+    font-family: 'Helvetica', sans-serif;
+    line-height: 1.6;
+    color: #374151;
+    margin: 0;
+  }
+
+  /* Dark Mode Support */
+  :global(.dark) .timeline { border-left-color: #374151; }
+  :global(.dark) .timeline-card { background: #1f2937; border-color: #374151; }
+  :global(.dark) h3 { color: #f3f4f6; }
+  :global(.dark) h4 { color: #9ca3af; }
+  :global(.dark) p { color: #d1d5db; }
+</style>

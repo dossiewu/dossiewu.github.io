@@ -1,0 +1,177 @@
+---
+// src/pages/research/[id].astro
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { projects } from "@/data/projects";
+
+// This function tells Astro which pages to build based on your data file
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | Research`}>
+  <Header />
+  <main id="main-content">
+    
+    <div class="project-hero">
+      <object data={project.heroImage} type="image/jpg" class="hero-media">
+        <img src={project.heroImage} alt={project.title} />
+      </object>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="project-title">{project.title}</h1>
+        <p class="project-subtitle">{project.subtitle}</p>
+      </div>
+    </div>
+
+    <div class="project-container">
+      
+      <div class="tags-container">
+        {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+
+      <div class="project-description" set:html={project.description}></div>
+
+      <a href="/research" class="back-link">&larr; Back to All Research</a>
+    </div>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* --- HERO SECTION --- */
+  .project-hero {
+    position: relative;
+    height: 60vh; /* Takes up 60% of the screen height */
+    min-height: 400px;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 3rem;
+    color: white;
+    max-width: 900px;
+  }
+
+  .project-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    /* Iridescent Gradient */
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .project-subtitle {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.5rem;
+    color: #d1d5db;
+    margin-top: 1rem;
+  }
+
+  /* --- CONTENT SECTION --- */
+  .project-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    background: #f3f4f6;
+    color: #6366f1;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .project-description {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #374151;
+    margin-bottom: 3rem;
+  }
+
+  /* This targets paragraphs inside the description that you wrote in the data file */
+  .project-description :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link {
+    font-family: 'JetBrains Mono', monospace;
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .back-link:hover { transform: translateX(-5px); }
+
+  :global(.github-btn) {
+    display: inline-block;
+    background: #111827; /* Dark background */
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  :global(.github-btn:hover) {
+    transform: translateY(-2px);
+    background: #6366f1; /* Turns purple on hover */
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+  }
+
+  /* Dark Mode Support */
+  :global(.dark) :global(.github-btn) {
+    background: #ffffff;
+    color: #111827;
+  }
+  :global(.dark) :global(.github-btn:hover) {
+    background: #a855f7; /* Lighter purple for dark mode */
+    color: white;
+  }
+  
+  /* Dark Mode Adjustments */
+  :global(.dark) .tag { background: #1f2937; border-color: #374151; color: #a855f7; }
+  :global(.dark) .project-description { color: #d1d5db; }
+</style>

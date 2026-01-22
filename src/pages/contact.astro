@@ -1,0 +1,126 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`Contact | ${SITE.title}`}>
+  <Header />
+  <main id="main-content">
+    
+    <div class="page-header">
+      <h1 class="page-title">&lt;Contact /&gt;</h1>
+      <p class="subtitle">Let's connect and discuss science.</p>
+    </div>
+
+    <div class="terminal-card">
+      <div class="card-header">
+        <span class="command">$ ping xunhui</span>
+      </div>
+      
+      <div class="card-body">
+        <p class="terminal-text">
+          <span class="arrow">&gt;</span> 
+          I am always open to discussing <strong>neuropsychiatric research</strong>, <strong>neural circuit dynamics</strong>, and potential R&D opportunities!
+        </p>
+
+        <div class="button-container">
+          <a href="mailto:xunhui.wu@northwestern.edu" class="contact-btn email-btn">
+            Send Email
+          </a>
+          
+          <a href="https://www.linkedin.com/in/dossiewu/" target="_blank" class="contact-btn linkedin-btn">
+            Connect on LinkedIn
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  #main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    min-height: 70vh;
+  }
+
+  .page-header { text-align: center; margin-bottom: 3rem; }
+  .page-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { font-family: 'Helvetica', sans-serif; color: #6b7280; font-size: 1.1rem; }
+
+  /* --- CARD STYLES --- */
+  .terminal-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .card-header {
+    background: #f9fafb;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .command { color: #10b981; font-weight: bold; font-size: 1.1rem; }
+  .card-body { padding: 3rem 2rem; text-align: center; }
+
+  .terminal-text {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 2.5rem;
+  }
+  .arrow { color: #a855f7; font-weight: bold; margin-right: 0.5rem; }
+
+  /* --- BUTTONS --- */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-btn:hover { transform: translateY(-3px); }
+
+  .email-btn {
+    background: #111827; /* Dark Button */
+    color: white;
+  }
+  .email-btn:hover { background: #6366f1; box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3); }
+
+  .linkedin-btn {
+    background: white;
+    border: 2px solid #0077b5;
+    color: #0077b5;
+  }
+  .linkedin-btn:hover { background: #0077b5; color: white; }
+
+  /* Dark Mode */
+  :global(.dark) .terminal-card { background: #1f2937; border-color: #374151; }
+  :global(.dark) .card-header { background: #111827; border-color: #374151; }
+  :global(.dark) .terminal-text { color: #d1d5db; }
+</style>

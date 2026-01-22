@@ -1,0 +1,183 @@
+---
+// src/pages/research.astro
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+import { projects } from "@/data/projects"; // Import your project data
+---
+
+<Layout title={`Research | ${SITE.title}`}>
+  <Header />
+  <main id="main-content">
+    
+    <div class="page-header">
+      <h1 class="page-title">&lt;Research &amp; Projects /&gt;</h1>
+    </div>
+
+    <details class="publications-accordion">
+      <summary class="accordion-summary">
+        <h2 class="accordion-title">View My Publications</h2>
+        <span class="accordion-icon">+</span>
+      </summary>
+      <div class="accordion-content">
+        <ul class="pub-list">
+          <li><strong>Wu, X.</strong>; Fleps, S.W.; Kane, A.; Anair, J.D.; Centeno, M.V.; Apkarian, A.V.; Parker, J.G.
+        The role of striatal µ-opioid receptors in opioid-driven striatal dynamics and behavior. 
+        <em>Manuscript in preparation</em>.
+            </li>
+          <li>Alsaiari, S.K.; Eshaghi, B.; Du, B.; Kanelli, M.; Li, G.; <strong>Wu, X.</strong>; Zhang, L.; Chaddah, M.; Lau, A.; Yang, X.; Langer, R. & Jaklenec, A.
+        CRISPR–Cas9 delivery strategies for the modulation of immune and non-immune cells.
+        <em>Nat Rev Mater</em> 10, 44–61 (2024).
+        <a href="https://doi.org/10.1038/s41578-024-00725-7" target="_blank" class="pub-link">
+        [Link to Manuscript]
+        </a>
+        </li>
+          <li>Fleps, S.W.; Yang, B.; Moya, N.A.; <strong>Wu, X.</strong>; Yun, S. & Parker, J.G. 
+            Lateralized nigrostriatal dopamine pathway activation promotes early reversal learning.
+            <em>Front. Behav. Neurosci</em>. 19:1703094 (2025).
+            <a href="https://doi.org/10.3389/fnbeh.2025.1703094" target="_blank" class="pub-link">
+        [Link to Manuscript]
+        </a>
+            </li>
+            <li>Potjer, E.; <strong>Wu, X.</strong>; Kane, A.; Parker, J.G.
+            Parkinsonian striatal acetylcholine dynamics are refractory to L-DOPA treatment.
+            <em>bioRxiv</em> 2025.11.06.686401.
+            <a href="https://doi.org/10.1101/2025.11.06.686401" target="_blank" class="pub-link">
+        [Link to Manuscript]
+        </a>
+            </li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <a href={`/research/${project.id}`} class="project-tile">
+          <div class="tile-image-container">
+            <img src={project.cardImage} alt={project.title} class="tile-image" />
+            <div class="tile-overlay"></div>
+          </div>
+          <div class="tile-content">
+            <h3 class="tile-title">{project.title}</h3>
+            <p class="tile-tags">{project.tags.slice(0, 3).join(" · ")}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  #main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+
+  .page-header { text-align: center; margin-bottom: 3rem; }
+  .page-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* --- PUBLICATIONS ACCORDION --- */
+  .publications-accordion {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    font-family: 'Helvetica', sans-serif;
+  }
+  .accordion-summary {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; /* Removes default triangle */
+  }
+  .accordion-summary::-webkit-details-marker { display: none; }
+  .accordion-title { margin: 0; font-size: 1.25rem; font-weight: 700; }
+  .accordion-icon { font-size: 1.5rem; font-weight: bold; color: #6366f1; }
+  details[open] .accordion-icon { transform: rotate(45deg); }
+  .accordion-content { padding: 0 1.5rem 1.5rem 1.5rem; border-top: 1px solid #e5e7eb; }
+  .pub-list { list-style-type: disc; padding-left: 1.5rem; margin: 1rem 0 0 0; }
+  .pub-list li { margin-bottom: 0.8rem; line-height: 1.5; color: #374151; }
+
+  /* --- PROJECT TILES GRID --- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-tile {
+    display: block;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+
+  .project-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .tile-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  .tile-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .project-tile:hover .tile-image { transform: scale(1.05); }
+  .tile-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  }
+
+  .tile-content {
+    padding: 1.5rem;
+    position: relative;
+  }
+  .tile-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #111827;
+  }
+  .tile-tags {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+.pub-link {
+  color: #6366f1; /* Purple/Blue */
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+.pub-link:hover { text-decoration: underline; }
+
+  /* Dark Mode */
+  :global(.dark) .publications-accordion, :global(.dark) .project-tile { background: #1f2937; border-color: #374151; }
+  :global(.dark) .accordion-content { border-color: #374151; }
+  :global(.dark) .pub-list li, :global(.dark) .tile-tags { color: #ffffff; }
+  :global(.dark) .accordion-title, :global(.dark) .tile-title { color: #ffffff; }
+</style>
