@@ -57,18 +57,32 @@ import { SOCIALS } from "@/constants";
   /* This centers everything and puts them in a row */
   .home-container {
     display: flex;
+    flex-direction: column; /* Default: Stack them (Mobile) */
     align-items: center;
     justify-content: center;
-    gap: 3rem; /* Space between photo and card */
-    padding: 4rem 2rem;
-    max-width: 1000px;
+    gap: 2rem;
+    padding: 2rem 1rem;
     margin: 0 auto;
-    flex-wrap: wrap; /* This makes it look good on mobile! */
+    max-width: 100%; /* Ensure it doesn't overflow on phone */
   }
 
+  /* DESKTOP RULES (When screen is wider than 1024px) */
+  @media (min-width: 1024px) {
+    .home-container {
+      flex-direction: row; /* Force side-by-side */
+      align-items: center; /* Center them vertically */
+      gap: 1rem; /* More space between pic and card */
+      max-width: 1400px; /* Give them plenty of room to breathe */
+    }
+    
+    /* Optional: If the card gets too tall, this keeps the image aligned nicely */
+    .profile-img {
+      margin-bottom: 0; 
+    }
+  }
   /* This controls your profile photo size */
   .profile-img {
-    width: 320px;
+    width: 400px;
     height: 350px;
     object-fit: cover; /* Prevents stretching */
     border-radius: 20px;
